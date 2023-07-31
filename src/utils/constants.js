@@ -4,7 +4,6 @@ export const Turns = {
 };
 
 // Logica para el juego //
-
 export const WINNER_COMBOS = [
   [0, 1, 2],
   [3, 4, 5],

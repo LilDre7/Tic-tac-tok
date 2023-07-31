@@ -2,27 +2,14 @@
 import { useState } from "react";
 import confetti from "canvas-confetti";
 import Square from "./components/Square";
-import { Turns, WINNER_COMBOS } from "./utils/constants";
+import { Turns } from "./utils/constants";
+import { WinnerModal } from "./components/WinnerModal";
+import { checkWinner } from "./utils/board";
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [turn, setTurn] = useState(Turns.X);
   const [winner, setWinner] = useState(null);
-
-  const checkWinner = (boardToCheck) => {
-    // Comprobar si hay un ganador //
-    for (const combo of WINNER_COMBOS) {
-      const [a, b, c] = combo;
-      if (
-        boardToCheck[a] &&
-        boardToCheck[a] === boardToCheck[b] &&
-        boardToCheck[a] === boardToCheck[c]
-      ) {
-        return boardToCheck[a];
-      }
-    }
-    return null;
-  };
 
   const resetGame = () => {
     setBoard(Array(9).fill(null));
@@ -72,21 +59,8 @@ function App() {
           <Square isSelected={turn === Turns.X}>{Turns.X}</Square>
           <Square isSelected={turn === Turns.O}>{Turns.O}</Square>
         </section>
-        {winner !== null && (
-          <section className="winner">
-            <div className="text">
-              <h2>{winner === false ? "Empate" : "Ganador"}</h2>
 
-              <header className="win">
-                {winner && <Square> {winner} </Square>}
-              </header>
-
-              <footer>
-                <button onClick={resetGame}>Empezar de nuevo</button>
-              </footer>
-            </div>
-          </section>
-        )}
+        <WinnerModal winner={winner} resetGame={resetGame} />
       </main>
     </>
   );
