@@ -1,40 +1,8 @@
 // Aqui la logica
 import { useState } from "react";
 import confetti from "canvas-confetti";
-
-const Turns = {
-  X: "x",
-  O: "o",
-};
-
-const Square = ({ children, isSelected, updateBoard, index }) => {
-  const className = `square ${isSelected ? "is-selected" : ""}`;
-
-  const handleClick = () => {
-    updateBoard(index);
-  };
-
-  return (
-    <div onClick={handleClick} className={className}>
-      {children}
-    </div>
-  );
-};
-
-// Logica para el juego //
-
-const WINNER_COMBOS = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-  [1, 4, 9],
-  [3, 4, 7],
-];
+import Square from "./components/Square";
+import { Turns, WINNER_COMBOS } from "./utils/constants";
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -60,7 +28,7 @@ function App() {
     setBoard(Array(9).fill(null));
     setTurn(Turns.X);
     setWinner(null);
-  }
+  };
 
   const updateBoard = (index) => {
     // ** No actualizamos esta posicion porque ya esta ocupada ** //
@@ -77,11 +45,11 @@ function App() {
     const newWinner = checkWinner(newBoard);
     if (newWinner) {
       setWinner(newWinner);
-      confetti()
-    }else if(!newBoard.includes(null)){
-      setWinner(false)
-    }else{
-      setWinner(null)
+      confetti();
+    } else if (!newBoard.includes(null)) {
+      setWinner(false);
+    } else {
+      setWinner(null);
     }
   };
 
@@ -89,7 +57,7 @@ function App() {
     <>
       <main className="board">
         <h1>Tic Tac Toc</h1>
-        <button onClick={resetGame} >Reset Game</button>
+        <button onClick={resetGame}>Reset Game</button>
         <section className="game">
           {board.map((value, index) => {
             return (
@@ -104,32 +72,21 @@ function App() {
           <Square isSelected={turn === Turns.X}>{Turns.X}</Square>
           <Square isSelected={turn === Turns.O}>{Turns.O}</Square>
         </section>
-        {
-          winner !== null && (
-            <section className="winner">
-              <div className="text" >
-                <h2>
-                  {
-                    winner === false ? "Empate" : "Ganador"
-                  }
-                </h2>
+        {winner !== null && (
+          <section className="winner">
+            <div className="text">
+              <h2>{winner === false ? "Empate" : "Ganador"}</h2>
 
-                <header className="win" >
-                  {
-                    winner && <Square> {winner} </Square>
-                  }
-                </header>
+              <header className="win">
+                {winner && <Square> {winner} </Square>}
+              </header>
 
-                <footer>
-                  <button onClick={resetGame} >
-                    Empezar de nuevo
-                  </button>
-                </footer>
-
-              </div>
-            </section>
-          )
-        }
+              <footer>
+                <button onClick={resetGame}>Empezar de nuevo</button>
+              </footer>
+            </div>
+          </section>
+        )}
       </main>
     </>
   );

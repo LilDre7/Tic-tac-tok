@@ -41,7 +41,7 @@ body {
 }
 
 .board button {
-  padding: 8px 12px;
+  padding: 10px 12px;
   margin: 25px;
   background: transparent;
   border: 2px solid #eee;
@@ -67,7 +67,7 @@ body {
 .turn {
   display: flex;
   justify-content: center;
-  margin: 15px auto;
+  margin: 25px auto;
   width: fit-content;
   position: relative;
   border-radius: 10px;
@@ -79,6 +79,7 @@ body {
   height: 70px;
   pointer-events: none;
   border-color: transparent;
+  
 }
 
 .square.is-selected {
@@ -127,5 +128,6 @@ body {
   display: grid;
   place-items: center;
   cursor: pointer;
-  font-size: 48px;
+  font-size: 49px;
+  padding-bottom: 10px;
 }
