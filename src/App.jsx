@@ -5,7 +5,7 @@ import Square from "./components/Square";
 import { Turns } from "./utils/constants";
 import { WinnerModal } from "./components/WinnerModal";
 import { checkWinner } from "./utils/board";
-import FooterPersonal from "./components/footerPersonal";
+import FooterPersonal from "./components/FooterPersonal";
 
 function App() {
   const [board, setBoard] = useState(() => {
