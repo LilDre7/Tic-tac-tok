@@ -14,6 +14,9 @@ export const WinnerModal = ({ winner, resetGame }) => {
 
           <header className="win">
             {winner && <Square> {winner} </Square>}
+            {winner === false && (
+              <p className="empate"> ⚪ No hay ganador ❌ </p>
+            )}
           </header>
 
           <footer>

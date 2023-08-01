@@ -131,3 +131,28 @@ body {
   font-size: 49px;
   padding-bottom: 10px;
 }
+
+.empate {
+  padding: 10px;
+}
+
+@media only screen and (max-width: 450px) {
+  .square {
+    height: 70px;
+    width: 70px;
+    font-size: 35px;
+  }
+  .footer {
+    background-color: rebeccapurple;
+    position: relative;
+    bottom: 0;
+    
+    width: 100%;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    
+  }
+}

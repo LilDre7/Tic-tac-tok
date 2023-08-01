@@ -1,6 +1,6 @@
 export const Turns = {
-  X: "x",
-  O: "o",
+  X: "❌",
+  O: "⚪",
 };
 
 // Logica para el juego //
